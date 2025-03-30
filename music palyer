@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Audio Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        input[type="range"] {
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Audio Player</h2>
+    <h3 id="track-title">Track Title</h3>
+    <audio id="audio"></audio>
+
+    <div>
+        <button id="prev">Previous</button>
+        <button id="play">Play</button>
+        <button id="next">Next</button>
+    </div>
+
+    <input type="range" id="progress" min="0" max="100" value="0">
+
+    <script>
+        const audio = document.getElementById('audio');
+        const playButton = document.getElementById('play');
+        const prevButton = document.getElementById('prev');
+        const nextButton = document.getElementById('next');
+        const trackTitle = document.getElementById('track-title');
+        const progress = document.getElementById('progress');
+
+        const tracks = [
+            { title: 'Song 1', src: 'song1.mp3' },
+            { title: 'Song 2', src: 'song2.mp3' }
+        ];
+
+        let currentTrackIndex = 0;
+
+        // Load the initial track
+        function loadTrack(index) {
+            audio.src = tracks[index].src;
+            trackTitle.textContent = tracks[index].title;
+            audio.load();
+        }
+
+        function playTrack() {
+            audio.play();
+            playButton.textContent = 'Pause';
+        }
+
+        function pauseTrack() {
+            audio.pause();
+            playButton.textContent = 'Play';
+        }
+
+        playButton.addEventListener('click', () => {
+            if (audio.paused) {
+                playTrack();
+            } else {
+                pauseTrack();
+            }
+        });
+
+        prevButton.addEventListener('click', () => {
+            currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
+            loadTrack(currentTrackIndex);
+            playTrack();
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+            loadTrack(currentTrackIndex);
+            playTrack();
+        });
+
+        audio.addEventListener('timeupdate', () => {
+            if (!isNaN(audio.duration)) {
+                const progressValue = (audio.currentTime / audio.duration) * 100;
+                progress.value = progressValue;
+            }
+        });
+
+        progress.addEventListener('input', () => {
+            const newTime = (progress.value / 100) * audio.duration;
+            audio.currentTime = newTime;
+        });
+
+        // Load first track on page load
+        loadTrack(currentTrackIndex);
+    </script>
+
+</body>
+</html>
