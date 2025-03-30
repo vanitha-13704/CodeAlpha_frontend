@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="gallery">
+        <div class="thumbnail-container">
+            <img src="image1.jpg" alt="Image 1" class="thumbnail" onclick="openModal(0)">
+            <img src="image2.jpg" alt="Image 2" class="thumbnail" onclick="openModal(1)">
+            <img src="image3.jpg" alt="Image 3" class="thumbnail" onclick="openModal(2)">
+            <img src="image4.jpg" alt="Image 4" class="thumbnail" onclick="openModal(3)">
+            <img src="image5.jpg" alt="Image 5" class="thumbnail" onclick="openModal(4)">
+            <img src="image6.jpg" alt="Image 5" class="thumbnail" onclick="openModal(5)">
+            <img src="image7.jpg" alt="Image 5" class="thumbnail" onclick="openModal(6)">
+            <img src="image8.jpg" alt="Image 5" class="thumbnail" onclick="openModal(7)">
+            <img src="image9.jpg" alt="Image 5" class="thumbnail" onclick="openModal(8)">
+            <img src="image10.jpg" alt="Image 5" class="thumbnail" onclick="openModal(9)">
+            <img src="image11.jpg" alt="Image 5" class="thumbnail" onclick="openModal(10)">
+            <img src="image12.jpg" alt="Image 5" class="thumbnail" onclick="openModal(11)">
+            <img src="image13.jpg" alt="Image 5" class="thumbnail" onclick="openModal(12)">
+            <img src="image14.jpg" alt="Image 5" class="thumbnail" onclick="openModal(13)">
+            <img src="image15.jpg" alt="Image 5" class="thumbnail" onclick="openModal(14)">
+            <img src="image16.jpg" alt="Image 5" class="thumbnail" onclick="openModal(15)">
+
+
+
+        </div>
+    </div>
+
+    <div id="modal" class="modal" onclick="closeModal()">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div class="caption" id="modalCaption"></div>
+        <span class="prev" onclick="changeImage(-1)">&#10094;</span>
+        <span class="next" onclick="changeImage(1)">&#10095;</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
